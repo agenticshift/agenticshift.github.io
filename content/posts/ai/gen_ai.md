@@ -58,17 +58,6 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
   - [17. Other Patterns](#17-other-patterns)
 
 ## Introduction
-We chose this because we have 2 buzz words AI and design patterns. Instruction were to keep it basic & experiences of AI WG, we have 3 usecases are in progress; we will be sharing strategies or design patterns. If haven't already will go through chances are that you will.
-* security arch approvals
-* cost
-* availablility of an appropriate model 
-* model support for context size
-* amount of data in the confluence or knowledge base.
-* format of the data (e.g table, plantuml xmls)
-* challenges with the quality of context data.
-* Speed of models
-
----
 
 Before we proceed setting the stage.
 ## Concepts 
@@ -711,7 +700,7 @@ RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an **extension** of t
    - RRF helps surface the most relevant documents that are supported across different search formulations.
 
 2. **Enterprise Search:**  
-   - Documents across Telstra for example Flexcab.
+   - Documents across Company
 ```python
 embeddings_model = OpenAIEmbeddings()
 
