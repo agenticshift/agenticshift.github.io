@@ -1,7 +1,7 @@
 +++
 date = '2025-10-28T00:00:00+00:00'
 draft = false
-title = 'Model Context Protocol (MCP) Overview'
+title = 'Model Context Protocol'
 tags = ['AI', 'MCP']
 +++
 
