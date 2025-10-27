@@ -1,175 +1,260 @@
 +++
-date = '2025-10-28T00:00:00+10:00'
+date = '2025-10-28T00:00:00+00:00'
 draft = false
-title = 'MCP workflow automation'
+title = 'Model Context Protocol (MCP) Overview'
 tags = ['AI', 'MCP']
 +++
 
-MCP is a modern workflow automation and orchestration platform designed to connect, automate, and manage complex business processes across diverse systems. It provides a robust environment for integrating applications, services, and data pipelines, with a focus on scalability and advanced control.
+Model Context Protocol (MCP) is an open protocol designed to standardize the way context is shared, managed, and utilized across AI models, tools, and applications. MCP enables seamless interoperability between different AI systems, making it easier to build, extend, and orchestrate complex AI workflows.
 
-## MCP: Workflow Automation & Orchestration Platform
+## MCP: Model Context Protocol
 
-MCP (Master Control Program) is a flexible, enterprise-grade automation tool for orchestrating workflows, integrating APIs, and managing data flows. It offers a visual interface and scripting capabilities to automate business logic, streamline operations, and ensure reliability at scale.
+MCP provides a common language and set of conventions for describing, exchanging, and managing context in AI-powered systems. It is designed to be model-agnostic and works across a wide range of AI models, frameworks, and platforms.
 
 ### Key Features
-- **Visual Workflow Designer:** Intuitive drag-and-drop interface for building and visualizing workflows.
-- **Advanced Integrations:** Supports a wide range of connectors for SaaS, databases, APIs, and on-premise systems.
-- **Custom Scripting:** Enables advanced logic with support for multiple scripting languages (e.g., Python, JavaScript).
-- **Scalable Architecture:** Built for high-throughput, parallel processing, and large-scale automation.
-- **Robust Error Handling:** Advanced error management, retries, and transaction support for mission-critical workflows.
-- **Flexible Deployment:** Available as self-hosted, cloud, or hybrid deployments.
+- **Standardized Context Exchange:** Defines a universal format for sharing context between models, tools, and applications.
+- **Model-Agnostic:** Works with any AI model (LLMs, vision, speech, etc.) and any framework or provider.
+- **Composable Workflows:** Enables chaining and orchestration of multiple models and tools by passing context seamlessly.
+- **Extensible Schema:** Supports custom context types and extensions for specialized use cases.
+- **Open and Interoperable:** Community-driven, open standard with reference implementations and SDKs.
 
 ### Typical Use Cases
-- Enterprise data orchestration and ETL
-- Automated business process management (BPM)
-- API integration and microservice coordination
-- Real-time monitoring and alerting
-- Complex approval workflows with human-in-the-loop
+- Chaining multiple AI models (e.g., LLM + image model) in a single workflow
+- Integrating context from external tools (databases, APIs, user input) into model prompts
+- Building multi-modal AI applications (text, image, audio, etc.)
+- Sharing context between agents, plugins, or microservices
+- Standardizing context management in enterprise AI systems
 
 ### What Can MCP Do?
 
-MCP empowers organizations to:
+MCP enables you to:
 
-- **Automate Complex Processes:** Streamline multi-step, cross-system workflows with conditional logic, branching, and loops.
-- **Integrate AI and Analytics:** Connect to AI/ML services for intelligent automation, data enrichment, and predictive analytics.
-- **Connect Any System:** Integrate legacy, cloud, and on-premise systems using pre-built connectors or custom adapters.
-- **Ensure Reliability:** Use advanced error handling, retries, and monitoring to maintain robust, fault-tolerant workflows.
-- **Enable Human Oversight:** Incorporate manual review, approvals, and exception handling into automated processes.
-- **Scale Operations:** Orchestrate thousands of workflows in parallel, supporting enterprise-scale automation needs.
+- **Orchestrate Multi-Model Workflows:** Pass context between different models and tools, enabling complex, multi-step AI pipelines.
+- **Integrate External Data:** Seamlessly inject data from APIs, databases, or user input into model context.
+- **Enable Agent Collaboration:** Allow multiple AI agents or plugins to share and update context in a standardized way.
+- **Promote Reusability:** Build modular, reusable components that interoperate via the MCP standard.
+- **Enhance Traceability:** Track and audit context as it flows through your AI system for transparency and debugging.
 
 ### What MCP Cannot Do
 
-Despite its power, MCP has some boundaries:
+While MCP is a powerful protocol for context management, it has some limitations:
 
-- **Not a Full Application Platform:** MCP is designed for automation and orchestration, not for building standalone web/mobile apps or user interfaces.
-- **Requires Technical Setup:** Advanced features may require scripting or technical configuration beyond simple drag-and-drop.
-- **Connector Limitations:** While extensive, some niche or proprietary systems may require custom integration work.
-- **Resource Management:** Large-scale deployments require careful resource planning and infrastructure management.
+- **Not a Model or Framework:** MCP is a protocol, not an AI model, framework, or runtime. It does not provide inference, training, or model hosting.
+- **No Built-in UI or Automation:** MCP does not include workflow automation, scheduling, or user interfaces—these must be built separately or integrated with other tools.
+- **Not a Data Store:** MCP is not a database or persistent storage solution; it standardizes context exchange, not storage.
+- **Requires Adoption:** Interoperability depends on adoption by tools, models, and platforms in your stack.
 
-### Deployment Options: Pros and Cons
+### Integration and Deployment
 
-| Option            | Pros                                                      | Cons                                                      |
-|-------------------|-----------------------------------------------------------|-----------------------------------------------------------|
-| Local             | Full control, no hosting cost, data stays on your machine | Limited accessibility, not always online, manual updates  |
-| Cloud (MCP Cloud) | Easy setup, managed updates, accessible from anywhere     | Recurring cost, less control, data on third-party servers |
-| VPS/Hybrid        | Flexible, scalable, remote access, more control than cloud| Requires server management, security/maintenance overhead |
+- **Reference Implementations:** MCP provides SDKs and libraries for popular languages (Python, TypeScript, etc.) to help you adopt the protocol.
+- **Open Standard:** Documentation, schemas, and community resources are available at [modelcontextprotocol.io](https://modelcontextprotocol.io/docs/getting-started/intro).
+- **Flexible Integration:** Can be used in cloud, on-premises, or hybrid environments, and with any AI provider or model.
 
-### Quick Start with Python
+### Example: Using MCP with FastAPI and fastMCP
 
-Below is a full Python example of a workflow automation using MCP principles. This script demonstrates orchestrating a data pipeline: fetching data from an API, transforming it, and saving it to a database.
+Below is a practical example of using the FastMCP server with FastAPI, following the correct usage pattern:
 
-```python
-import requests
-import sqlite3
+First, install fastmcp:
 
-def fetch_data(api_url):
-    response = requests.get(api_url)
-    response.raise_for_status()
-    return response.json()
-
-def transform_data(data):
-    # Example transformation: filter and map fields
-    return [
-        {
-            'id': item['id'],
-            'name': item['name'].upper(),
-            'value': float(item['value']) * 1.1
-        }
-        for item in data if float(item['value']) > 10
-    ]
-
-def save_to_db(db_path, records):
-    conn = sqlite3.connect(db_path)
-    c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS records (id INTEGER, name TEXT, value REAL)''')
-    c.executemany('INSERT INTO records (id, name, value) VALUES (?, ?, ?)',
-                  [(r['id'], r['name'], r['value']) for r in records])
-    conn.commit()
-    conn.close()
-
-if __name__ == '__main__':
-    API_URL = 'https://api.example.com/data'  # Replace with real API
-    DB_PATH = 'mcp_data.db'
-    raw_data = fetch_data(API_URL)
-    processed = transform_data(raw_data)
-    save_to_db(DB_PATH, processed)
-    print(f"Saved {len(processed)} records to {DB_PATH}")
+```bash
+pip install fastmcp httpx
 ```
 
-### MCP User Interface Overview
+#### Canonical Example: FastMCP as a Server/Controller
 
-MCP's UI is organized into three main sections:
+```python
+from typing import Any
+import httpx
+from mcp.server.fastmcp import FastMCP
 
-#### 1. Workflows
-- **Purpose:** Design, edit, and manage automation workflows.
-- **Workflow Steps:**
-  - **Trigger Node:** Defines how the workflow starts (e.g., schedule, webhook, event).
-  - **Processing Nodes:** Perform actions such as data transformation, API calls, database queries, or invoking AI services.
-  - **Conditional Logic:** Add IF/ELSE branches, loops, and switches to control workflow paths.
-  - **Human-in-the-Loop:** Insert manual approval or input steps.
-  - **Notifications/Actions:** Send messages, emails, or trigger other systems.
+# Initialize FastMCP server with a workflow name
+mcp = FastMCP("weather")
 
-#### 2. Credentials
-- **Purpose:** Securely store and manage API keys, tokens, and connection details for third-party services, databases, and internal systems.
-- **Features:**
-  - Add, edit, and test credentials for each integration.
-  - Credentials are referenced in workflow nodes for secure, reusable connections.
+NWS_API_BASE = "https://api.weather.gov"
+USER_AGENT = "weather-app/1.0"
 
-#### 3. Executions
-- **Purpose:** Monitor, debug, and review workflow runs.
-- **Features:**
-  - View execution history, including success/failure status, input/output data, and error messages.
-  - Replay or debug failed executions step-by-step.
+@mcp.step()
+def get_weather(context: dict[str, Any]) -> dict[str, Any]:
+    lat = context.get("lat")
+    lon = context.get("lon")
+    if not lat or not lon:
+        return {"error": "Missing latitude or longitude"}
+    url = f"{NWS_API_BASE}/points/{lat},{lon}/forecast"
+    headers = {"User-Agent": USER_AGENT}
+    with httpx.Client() as client:
+        resp = client.get(url, headers=headers)
+        resp.raise_for_status()
+        forecast = resp.json()
+    return {"forecast": forecast}
 
-### Node Types
+# To run the FastAPI app:
+#   uvicorn mcp.server.fastmcp:app --reload
+```
 
-MCP provides a variety of node types to build powerful, flexible workflows:
-
-#### AI
-- **Purpose:** Integrate AI models and APIs for tasks like text generation, classification, and analytics.
-
-#### Action in an App
-- **Purpose:** Perform actions in external apps or services (e.g., create a row, send a message, update a record).
-
-#### Data Transformation
-- **Purpose:** Manipulate, filter, map, or convert data between formats, clean up input, or enrich workflow data.
-
-#### Flow
-- **Purpose:** Control the workflow logic by branching, merging, looping, or switching paths based on conditions or data.
-
-#### Core
-- **Purpose:** Run custom code, make HTTP requests, set webhooks, manage credentials, or perform other essential workflow operations.
-
-#### Trigger Node
-- **Purpose:** Start workflows based on events, schedules, or external triggers (e.g., webhook, timer, file change).
-
-#### Human in the Loop
-- **Purpose:** Pause the workflow to wait for human approval, review, or input before continuing automation.
-
-### Credentials Node
-
-Credentials nodes in MCP securely store and manage authentication details for connecting to external services. Common credential types include:
-
-- **Database:** Stores connection details for SQL/NoSQL databases.
-- **API Key/OAuth2:** Stores API keys or OAuth2 credentials for third-party services.
-- **Cloud Providers:** Manages access keys and secrets for cloud services (e.g., AWS, GCP).
-- **Custom:** Supports custom authentication schemes as needed.
-
-Credentials are referenced by workflow nodes to enable secure, reusable, and centralized management of sensitive connection information.
-
-### AI & Agentic Workflow Orchestrators – MCP Perspective
-| Tool / Platform | Strengths (vs MCP) | Weaknesses (vs MCP) | Ideal Use Case |
-|---|---|---|---|
-| **n8n** | No-code UI, many SaaS integrations, easy onboarding | Less scalable, limited error handling, less scripting flexibility | Quick automations, SaaS integrations |
-| **LangGraph** | Graph-based, stateful agent orchestration | Requires coding, fewer integrations | Complex agent workflows |
-| **LangChain** | LLM/RAG/agent focus, flexible pipelines | Code-first, less external integration | Knowledge assistants, RAG pipelines |
-| **AutoGen** | Multi-agent, role management | Complex setup, less UI | Multi-agent research, enterprise teams |
-| **Prefect** | Production scheduling, retries, observability | Not agent-native, code-first | ML/data pipelines |
-| **Dagster** | Strong typing, reproducibility | Not agent-native | Data/ML pipelines |
-| **Temporal** | Durable, long-running workflows | Infra overhead, code-first | Long-running business/AI processes |
-| **Ray** | Scalable, parallel compute | Low-level, infra complexity | High-scale agent fleets |
-| **Zapier/Make** | Low-code, fast SaaS integration | Not agent-native, limited logic | Simple automations |
+This example demonstrates how to define a workflow step using FastMCP, fetch weather data from an external API, and return the result in a standardized MCP context.
 
 ---
 
-This comprehensive guide should help you get started with MCP for workflow automation, including a full Python example and a comparison with other orchestrators.
+Legacy/Alternative patterns (for reference) are shown below, but the above is the recommended usage for fastmcp >= 0.2.0.
+
+Below are several examples of how to use the fastMCP library to manage model context in a FastAPI application. These demonstrate how you can standardize context exchange in your AI workflows using MCP.
+
+First, install fastMCP:
+
+```bash
+pip install fastmcp
+```
+
+#### 1. Basic: Receive and Return Context
+
+```python
+from fastapi import FastAPI, Request
+from fastmcp import ModelContext
+
+app = FastAPI()
+
+@app.post("/run-mcp-workflow/")
+async def run_workflow(request: Request):
+    context = await request.json()
+    mcp_context = ModelContext.from_dict(context)
+    user_id = mcp_context.get("user_id")
+    task = mcp_context.get("task")
+    result = {"message": f"Ran workflow for user {user_id} and task {task}"}
+    mcp_context["result"] = result
+    return mcp_context.to_dict()
+```
+
+#### 2. Create a New Context from Scratch
+
+```python
+from fastmcp import ModelContext
+
+@app.post("/create-context/")
+async def create_context():
+    mcp_context = ModelContext(user_id="user123", task="summarization")
+    mcp_context["status"] = "created"
+    return mcp_context.to_dict()
+```
+
+#### 3. Update an Existing Context
+
+```python
+@app.post("/update-context/")
+async def update_context(request: Request):
+    context = await request.json()
+    mcp_context = ModelContext.from_dict(context)
+    mcp_context["updated"] = True
+    mcp_context["timestamp"] = "2025-10-28T12:00:00Z"
+    return mcp_context.to_dict()
+```
+
+#### 4. Return Only a Subset of the Context
+
+```python
+@app.post("/context-summary/")
+async def context_summary(request: Request):
+    context = await request.json()
+    mcp_context = ModelContext.from_dict(context)
+    summary = {"user_id": mcp_context.get("user_id"), "task": mcp_context.get("task")}
+    return summary
+```
+
+#### 5. Validate Context and Handle Errors
+
+```python
+from fastapi import HTTPException
+
+@app.post("/validate-context/")
+async def validate_context(request: Request):
+    context = await request.json()
+    try:
+        mcp_context = ModelContext.from_dict(context)
+        if "user_id" not in mcp_context:
+            raise ValueError("Missing user_id")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    return {"status": "valid", "context": mcp_context.to_dict()}
+```
+
+#### 6. Use Context to Route to Different Logic
+
+```python
+@app.post("/route-by-task/")
+async def route_by_task(request: Request):
+    context = await request.json()
+    mcp_context = ModelContext.from_dict(context)
+    task = mcp_context.get("task")
+    if task == "summarization":
+        result = {"summary": "This is a summary."}
+    elif task == "classification":
+        result = {"class": "positive"}
+    else:
+        result = {"message": "Unknown task."}
+    mcp_context["result"] = result
+    return mcp_context.to_dict()
+```
+
+These examples show how to receive, create, update, validate, and use context in different ways using MCP, making your AI APIs interoperable and composable.
+
+---
+
+## Minimal Example: MCP Server and Client
+
+This section demonstrates a minimal, end-to-end workflow using MCP: a server that exposes a workflow step, and a client that connects and invokes it.
+
+### MCP Server Example (FastAPI + FastMCP)
+
+```python
+from typing import Any
+import httpx
+from mcp.server.fastmcp import FastMCP
+
+# Initialize FastMCP server with a workflow name
+mcp = FastMCP("weather")
+
+NWS_API_BASE = "https://api.weather.gov"
+USER_AGENT = "weather-app/1.0"
+
+@mcp.step()
+def get_weather(context: dict[str, Any]) -> dict[str, Any]:
+    lat = context.get("lat")
+    lon = context.get("lon")
+    if not lat or not lon:
+        return {"error": "Missing latitude or longitude"}
+    url = f"{NWS_API_BASE}/points/{lat},{lon}/forecast"
+    headers = {"User-Agent": USER_AGENT}
+    with httpx.Client() as client:
+        resp = client.get(url, headers=headers)
+        resp.raise_for_status()
+        forecast = resp.json()
+    return {"forecast": forecast}
+
+# To run the server:
+#   uvicorn mcp.server.fastmcp:app --reload
+```
+
+### MCP Client Example (Python Async)
+
+```python
+import asyncio
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+
+async def main():
+    # Connect to the MCP server (assumes server is running and accessible via stdio)
+    async with stdio_client(StdioServerParameters(command=["python", "-m", "mcp.server.fastmcp", "weather"])) as client:
+        async with ClientSession(client) as session:
+            # Send context to the server's workflow step
+            context = {"lat": 39.7456, "lon": -97.0892}
+            result = await session.run_step("get_weather", context)
+            print("Server response:", result)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+These two examples together show how to define a workflow step on the server and invoke it from a Python client using MCP.
+
+---
+
+For more details, see the [official MCP documentation](https://modelcontextprotocol.io/docs/getting-started/intro).
