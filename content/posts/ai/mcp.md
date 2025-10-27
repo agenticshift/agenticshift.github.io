@@ -5,7 +5,7 @@ title = 'Model Context Protocol'
 tags = ['AI', 'MCP']
 +++
 
-Model Context Protocol (MCP) is an open protocol designed to standardize the way context is shared, managed, and utilized across AI models, tools, and applications. MCP enables seamless interoperability between different AI systems, making it easier to build, extend, and orchestrate complex AI workflows.
+Model Context Protocol (MCP) is an open protocol designed to standardize the way context is shared, managed, and utilized across AI models, tools, and applications. MCP enables seamless interoperability between different AI systems, making it easier to build, extend and orchestrate complex AI workflows.
 
 ## MCP: Model Context Protocol
 
