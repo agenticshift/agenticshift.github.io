@@ -1,7 +1,7 @@
 +++
 date = '2025-05-10T12:44:47+10:00'
 draft = false
-title = 'Gen AI Patterns'
+title = 'AI Roadmap'
 tags = ['LLM', 'AI', 'Design Patterns']
 +++
 
