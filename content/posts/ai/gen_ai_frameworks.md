@@ -11,20 +11,17 @@ tags = ['LLM', 'Frameworks', 'Comparison']
 |---------------|----------|-------------|---------|------------------|---------------|---------------------------------------|-------------------------------|-----------------------------|
 | LangChain     | Python   | Application | Yes     | Excellent        | LangSmith, Langfuse | Chains, agents, integrations          | Modular, flexible workflows   | Token usage, rapid changes  |
 | LlamaIndex    | Python   | Application | Partial | Excellent        | Langfuse      | RAG, data connectors, chunking         | Data integration, token efficient | Smaller ecosystem           |
-| Haystack      | Python   | Application | No      | Excellent        | -             | RAG pipelines, search, production      | Production-focused, search    | Less flexible for non-RAG    |
 | CrewAI        | Python   | Agentic     | Yes     | Good             | -             | Role-based agent teams, safety         | Coordination, safety          | Narrow scope, token usage    |
 | LangGraph     | Python   | Agentic     | Yes     | Excellent        | LangSmith      | Multi-agent orchestration, graphs      | Orchestration, control        | New, steep learning curve    |
 | AutoGen       | Python   | Agentic     | Yes     | Good             | -             | Multi-agent collab, code gen, automation| Code generation, automation   | Token overhead, focused scope|
-| PyTorch       | Python   | DL Library  | No      | Excellent        | TorchServe     | Flexible, research, dynamic graphs     | Research, prototyping         | Less prod tooling            |
-| TensorFlow    | Python   | DL Library  | No      | Excellent        | TF Serving     | Production, static graphs, TPU         | Production, TPU support       | Steep learning curve         |
-| Keras         | Python   | DL Library  | No      | Excellent        | TF Serving     | High-level API, multi-backend          | Beginner-friendly, multi-backend | Less control, research limits|
-| vLLM          | Python   | Serving     | No      | Excellent        | -             | High-throughput inference, fine-tuning | High performance              | -                           |
 | Hugging Face  | Python   | Model Hub   | No      | Excellent        | -             | 25,000+ models, community, agnostic    | Large community, many models    | Resource intensive           |
 | OpenAI API    | Python   | Model API   | No      | Excellent        | -             | Hosted GPT models, simple API          | Fast setup, high quality        | Cost, customization limits   |
 | LangSmith     | Python   | Observability| Partial| Excellent        | Yes           | Tracing, debugging, evaluation         | Monitoring, evaluation         | LangChain focus, commercial  |
 | Langfuse      | Python   | Observability| Partial| Excellent        | Yes           | Prompt mgmt, versioning, observability | Prompt management, observability| New, paid features           |
 | Pinecone      | Python   | Vector DB   | No      | Excellent        | -             | Managed, scalable, production-ready    | Managed, scalable              | Cost, vendor lock-in         |
 | Milvus        | Python   | Vector DB   | No      | Excellent        | -             | Open-source, performant, self-hosted   | Open-source, performant        | -                           |
+| Spring AI     | Java     | Application | No      | Excellent        | Spring Boot Actuator, Zipkin, Splunk, DataDog | Spring ecosystem, portable, vector DB support | Enterprise-grade, security, Azure integration | Java only, smaller community, newer framework |
+| LangChain4j   | Java     | Application | No      | Good             | -             | Pure Java, JVM integration, lightweight | No Spring dependency, JVM polyglot | Smaller ecosystem, less features, less documentation |
 
 ## Detailed Framework & Tool Descriptions
 
@@ -33,7 +30,9 @@ tags = ['LLM', 'Frameworks', 'Comparison']
 
 **LlamaIndex:** Retrieval-augmented generation, data connectors. Optimized chunking, strong data integration, user-friendly. Best for RAG and private data integration. Cons: Smaller ecosystem, specialized focus.
 
-**Haystack:** RAG pipelines, search, production-ready. Strong search and retrieval, integrates with vector DBs. Best for production search/retrieval. Cons: Less flexible for non-RAG use cases.
+**Spring AI:** Spring-friendly API and abstractions for developing AI applications. Portable service abstractions, vector DB support, prompt caching, enterprise-grade security, and observability. Best for enterprise Java/Spring Boot projects. Cons: Limited to Java, smaller community, newer framework.
+
+**LangChain4j:** Java-native LLM framework for JVM ecosystem. Pure Java, lightweight, good for JVM polyglot applications. Best for Java developers not using Spring. Cons: Smaller ecosystem, less comprehensive features, less documentation.
 
 ### Agentic Frameworks
 **CrewAI:** Role-based agent teams, coordination, safety. Intuitive design, good for multi-agent tasks. Best for team-based agent applications. Cons: Narrow scope, higher token usage.
@@ -41,16 +40,6 @@ tags = ['LLM', 'Frameworks', 'Comparison']
 **LangGraph:** Multi-agent orchestration, graph workflows. Flexible, superior for multi-agent orchestration. Best for complex multi-agent workflows. Cons: Newer, steeper learning curve.
 
 **AutoGen:** Multi-agent collaboration, code generation, automation. Excellent for code generation, multi-agent collaboration. Best for automated programming and agentic workflows. Cons: Token overhead, focused on automation.
-
-### Deep Learning Libraries
-**PyTorch:** Flexible, research-focused, dynamic graphs. Codebase mirrors Python, great for research/prototyping. Cons: Less optimized for production, less prod tooling.
-
-**TensorFlow:** Production, static graphs, TPU support. Comprehensive ecosystem, good for enterprise/deployment. Cons: Steep learning curve, complex debugging.
-
-**Keras:** High-level API, multi-backend, beginner-friendly. Minimal code, supports JAX, TF, PyTorch. Cons: Less control for advanced users, limited for cutting-edge research.
-
-### Model Serving & Inference
-**vLLM:** High-throughput LLM inference, fine-tuning. Best for scalable inference.
 
 ### Model Repositories & APIs
 **Hugging Face Model Hub:** 25,000+ models, community-driven.
@@ -66,6 +55,14 @@ tags = ['LLM', 'Frameworks', 'Comparison']
 **Pinecone:** Managed, scalable, production-ready. Cons: Cost, vendor lock-in.
 
 **Milvus:** Open-source, self-hosted, performant.
+
+**Weaviate:** Modular, semantic search, REST API. Cons: Setup complexity.
+
+**Qdrant:** Fast, open-source, REST/gRPC. Cons: Smaller ecosystem.
+
+**pgvector:** PostgreSQL extension for vector search. Cons: Limited to Postgres, less features.
+
+**Redis:** Redis module for vector search. Cons: Limited advanced features.
 
 ## Comprehensive List and Comparison of LLM Frameworks and Tools (2025)
 
@@ -98,28 +95,27 @@ LlamaIndex specializes in context-augmented generative AI applications, making p
 - Smaller ecosystem compared to LangChain
 **Best For:** Applications requiring integration with diverse data sources and private data
 
-### 3. LangGraph
-LangGraph delivers a comprehensive toolset for building complex multi-agent systems.
+### 3. Spring AI
+Spring AI provides Spring-friendly abstractions and APIs for developing AI applications, integrating seamlessly with the Spring ecosystem.
 **Strengths:**
-- Superior for multi-agent orchestration
-- Flexible graph-based workflows
-- Better control over agent interactions
+- Excellent integration with Spring Boot and other Spring projects
+- Portable service abstractions for cloud and on-premises
+- Enterprise-grade security and observability features
 **Weaknesses:**
-- Newer framework (launched 2024)
-- Steeper learning curve
-- Smaller community
-**Best For:** Complex multi-agent systems and sophisticated AI workflows
+- Limited to Java and the Spring ecosystem
+- Smaller community and ecosystem compared to Python-based frameworks
+**Best For:** Enterprise Java/Spring Boot projects requiring AI capabilities
 
-### 4. Haystack
-Haystack streamlines RAG pipelines for production-ready AI applications.
+### 4. LangChain4j
+LangChain4j is a Java-native framework for building LLM applications, designed for the JVM ecosystem.
 **Strengths:**
-- Production-focused
-- Strong search and retrieval capabilities
-- Good integration with vector databases
+- Pure Java implementation, no Spring dependency
+- Lightweight and fast, suitable for JVM polyglot applications
+- Easy integration with existing Java projects
 **Weaknesses:**
-- More specialized than general-purpose frameworks
-- Less flexible for non-RAG use cases
-**Best For:** Production-ready search and retrieval applications
+- Smaller ecosystem and community
+- Less comprehensive feature set compared to LangChain
+**Best For:** Java developers looking for a lightweight, flexible LLM framework
 
 ### 5. AutoGen (Microsoft)
 AutoGen facilitates the creation of AI-powered applications by automating the generation of code, models, and processes needed for complex workflows, particularly effective at automating the process of generating AI agents.
@@ -207,13 +203,6 @@ Hugging Face Transformers is an open-source library providing access to over 25,
 - Enterprise features have hosting costs
 **Best For:** Leveraging pre-trained models and community resources
 
-### 2. Vector Databases
-- **Pinecone:** Fully managed, scalable, production-ready. Cost considerations for large-scale usage, vendor lock-in.
-- **Milvus:** Open-source alternative, self-hosted, good performance.
-
-### 3. Observability Tools
-- **Langfuse:** Prompt management, versioning, optimization, real-time debugging, performance monitoring. Integrates with LangChain and LlamaIndex.
-
 ## IV. Deployment & Serving Tools
 - **TensorFlow Serving:** High-performance, flexible system for deploying TensorFlow models in production.
 - **TorchServe:** PyTorch's production serving solution.
@@ -229,6 +218,8 @@ Hugging Face Transformers is an open-source library providing access to over 25,
 | PyTorch          | Python   | Easy          | Excellent        | Excellent     | Good             | Dominant      |
 | TensorFlow       | Python   | Hard          | Excellent        | Medium        | Excellent        | Very Large    |
 | Keras            | Python   | Very Easy     | Excellent        | Low           | Good             | Large         |
+| Spring AI        | Java     | Medium        | Excellent        | Medium        | Medium           | Growing       |
+| LangChain4j      | Java     | Medium        | Good             | Medium        | Medium           | Smaller       |
 
 ## VI. Selection Guide
 - **LangChain:** Building complex, multi-step applications; maximum flexibility; experienced developers
@@ -236,6 +227,8 @@ Hugging Face Transformers is an open-source library providing access to over 25,
 - **PyTorch:** Research, prototyping, debugging flexibility; largest research community
 - **TensorFlow:** Production enterprise systems; mobile/edge deployment; TPU support
 - **AutoGen:** Code generation, automated agents; minimal AI expertise required
+- **Spring AI:** Enterprise Java/Spring Boot projects; AI capabilities within the Spring ecosystem
+- **LangChain4j:** Lightweight, flexible LLM framework for Java developers
 
 ## VII. 2025 Trends
 - Framework consolidation (Keras 3.0 multi-backend)
@@ -243,5 +236,32 @@ Hugging Face Transformers is an open-source library providing access to over 25,
 - Token efficiency and cost optimization
 - Better observability and debugging tools
 - Rapid enterprise adoption of autonomous agents
+
+## VIII. Vector Databases for LLM Applications
+
+Vector databases are essential for storing and searching high-dimensional embeddings generated by LLMs, enabling fast similarity search and retrieval-augmented generation (RAG).
+
+| Database    | Type         | Language Support | Production Ready | Key Features                        | Pros                        | Cons                        |
+|-------------|--------------|-----------------|------------------|--------------------------------------|-----------------------------|-----------------------------|
+| Pinecone    | Managed      | Python, Java    | Yes              | Scalable, managed, cloud-native      | Easy setup, high performance| Cost, vendor lock-in         |
+| Milvus      | Open-source  | Python, Java    | Yes              | Self-hosted, high performance        | Flexible, cost-effective    | Operational overhead         |
+| Weaviate    | Open-source  | Python, Java    | Yes              | Modular, semantic search, REST API   | Schema support, extensible  | Setup complexity             |
+| Qdrant      | Open-source  | Python, Rust    | Yes              | Fast, open-source, REST/gRPC         | High performance, easy deploy| Smaller ecosystem            |
+| pgvector    | Extension    | SQL (Postgres)  | Yes              | Embedding search in PostgreSQL       | Integrates with SQL, easy ops| Limited to Postgres, less features|
+| Redis       | Extension    | Python, Java    | Yes              | Vector search via Redis module       | Fast, simple, multi-purpose | Limited advanced features    |
+
+### Vector DB Descriptions
+
+**Pinecone:** Fully managed, scalable vector database for production RAG. Cloud-native, easy to integrate, but can be costly and is vendor-locked.
+
+**Milvus:** Open-source, self-hosted vector DB with high performance and flexibility. Suitable for organizations wanting control over infrastructure.
+
+**Weaviate:** Modular, open-source vector DB with semantic search and REST API. Good for extensibility and schema support.
+
+**Qdrant:** Fast, open-source vector DB with REST/gRPC APIs. Easy to deploy, high performance, but smaller ecosystem.
+
+**pgvector:** PostgreSQL extension for vector search. Enables embedding search in standard SQL databases, easy to operate, but limited to Postgres and fewer features than dedicated vector DBs.
+
+**Redis:** Redis module for vector search. Fast and simple, suitable for multi-purpose caching and search, but lacks advanced vector DB features.
 
 The landscape continues evolving rapidly, with no single best solution for all use cases.
