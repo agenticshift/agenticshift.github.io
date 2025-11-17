@@ -72,135 +72,168 @@ Based on current 2025 data, here is a detailed breakdown of the major LLM framew
 
 ### 1. LangChain
 LangChain is an open-source framework for developing applications that use large language models, providing tools and APIs for chatbots, content summarization, question-answering, and intelligent search.
+
 **Strengths:**
 - Highly flexible architecture supporting integration with APIs, databases, and external tools
 - Composable toolkit using LangChain Expression Language (LCEL) for complex workflows
 - Excellent for multi-step AI workflows
 - Strong community support 
-**Weaknesses:**
-- Can use 20-30% more tokens due to verbose prompting
+
+
+**Weaknesses:**- Can use 20-30% more tokens due to verbose prompting
 - Rapid evolution can lead to breaking changes and occasionally outdated documentation
 - Adds a layer of abstraction that can sometimes make debugging underlying issues more difficult
+
 **Best For:** Building context-aware, data-driven applications requiring complex workflows
 
 ### 2. LlamaIndex (formerly GPT Index)
 LlamaIndex specializes in context-augmented generative AI applications, making private or specific data available to LLMs whether it's behind APIs or in SQL databases and PDFs.
+
 **Strengths:**
 - Optimized chunking reduces token waste by ~15%
 - Excellent for Retrieval-Augmented Generation (RAG)
 - Strong data integration capabilities
 - User-friendly for beginners
-**Weaknesses:**
-- More specialized focus (primarily RAG)
+
+
+**Weaknesses:**- More specialized focus (primarily RAG)
 - Smaller ecosystem compared to LangChain
+
 **Best For:** Applications requiring integration with diverse data sources and private data
 
 ### 3. Spring AI
 Spring AI provides Spring-friendly abstractions and APIs for developing AI applications, integrating seamlessly with the Spring ecosystem.
+
 **Strengths:**
 - Excellent integration with Spring Boot and other Spring projects
 - Portable service abstractions for cloud and on-premises
 - Enterprise-grade security and observability features
-**Weaknesses:**
-- Limited to Java and the Spring ecosystem
+
+
+**Weaknesses:**- Limited to Java and the Spring ecosystem
 - Smaller community and ecosystem compared to Python-based frameworks
+
 **Best For:** Enterprise Java/Spring Boot projects requiring AI capabilities
 
 ### 4. LangChain4j
 LangChain4j is a Java-native framework for building LLM applications, designed for the JVM ecosystem.
+
 **Strengths:**
 - Pure Java implementation, no Spring dependency
 - Lightweight and fast, suitable for JVM polyglot applications
 - Easy integration with existing Java projects
-**Weaknesses:**
-- Smaller ecosystem and community
+
+
+**Weaknesses:**- Smaller ecosystem and community
 - Less comprehensive feature set compared to LangChain
+
 **Best For:** Java developers looking for a lightweight, flexible LLM framework
 
 ### 5. AutoGen (Microsoft)
 AutoGen facilitates the creation of AI-powered applications by automating the generation of code, models, and processes needed for complex workflows, particularly effective at automating the process of generating AI agents.
+
 **Strengths:**
 - Excellent for code generation
 - Multi-agent collaboration capabilities
 - User-friendly design for non-AI experts
-**Weaknesses:**
-- Agent communication overhead adds ~25% token usage
+
+
+**Weaknesses:**- Agent communication overhead adds ~25% token usage
 - More focused on automation than general LLM tasks
+
 **Best For:** Automated programming tasks and code-focused AI agents
 
 ### 6. CrewAI
 Specialized framework for creating role-based AI agent teams.
+
 **Strengths:**
 - Intuitive role-based agent design
 - Good for coordinated multi-agent tasks
 - Safety features built-in
-**Weaknesses:**
-- Narrower scope than general frameworks
+
+
+**Weaknesses:**- Narrower scope than general frameworks
 - Higher token usage for agent communication
+
 **Best For:** Team-based AI agent applications with specific roles
 
 ## II. Deep Learning Frameworks for LLMs
 
 ### 1. PyTorch
 PyTorch's design is centered around flexibility and user-friendliness, with its dynamic computation graph allowing developers to change the behavior of their models on the fly.
+
 **Strengths:**
 - Codebase closely mirrors standard Python, making it easier to grasp and debug
 - Widely regarded as more accessible, especially for Python programmers
 - torch.compile() in PyTorch 2.x provides ~20-25% speedups
 - Dominates research community (75%+ of new deep learning papers)
+
 **Weaknesses:**
 - Flexibility can lead to less optimized models for production
 - Less comprehensive production tooling out-of-the-box
+
 **Best For:** Research, prototyping, rapid experimentation
 
 ### 2. TensorFlow
 TensorFlow uses a static computation graph allowing for more straightforward optimization of models, potentially leading to better performance at scale.
+
 **Strengths:**
 - Native TPU support for large-scale training
 - Comprehensive ecosystem for deployment
 - Wide selection of platforms (mobile, distributed, web)
 - Better for enterprise MLOps
+
 **Weaknesses:**
 - More complex with a steeper learning curve
 - Debugging can be challenging
+
 **Best For:** Production deployments, enterprise applications, mobile/edge AI
 
 ### 3. Keras
 Keras provides an easier entry point for beginners with its user-friendly interface as a high-level API within TensorFlow.
+
 **Strengths:**
 - Most beginner-friendly
 - Keras 3.0 supports JAX, TensorFlow, PyTorch
 - Minimal code required
 - Framework-agnostic approach
+
 **Weaknesses:**
 - Less control for advanced users
 - Limited for cutting-edge research
+
 **Best For:** Beginners, rapid prototyping, standard deep learning tasks
 
 ### 4. JAX + Flax
 Google's newer framework for high-performance numerical computing.
+
 **Strengths:**
 - Functional programming approach
 - Excellent for mathematical operations
 - Superior performance optimization
+
 **Weaknesses:**
 - Smaller community
 - Steeper learning curve
+
 **Best For:** Research requiring high-performance computing and mathematical operations
 
 ## III. Supporting Tools & Infrastructure
 
 ### 1. Hugging Face Transformers
 Hugging Face Transformers is an open-source library providing access to over 25,000 pre-trained transformer models for NLP, computer vision, and audio/speech processing.
+
 **Strengths:**
 - Massive model repository
 - Framework-agnostic (works with PyTorch, TensorFlow, JAX)
 - Strong community
 - Excellent documentation
+
 **Weaknesses:**
 - Can be overwhelming for beginners
 - Variable model quality
 - Enterprise features have hosting costs
+
 **Best For:** Leveraging pre-trained models and community resources
 
 ## IV. Deployment & Serving Tools
