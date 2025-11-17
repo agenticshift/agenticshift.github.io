@@ -201,7 +201,7 @@ If `k = 3`:
 |-----------------------|------------|----------------------------------|------------------|-------------------------------|
 | LangChain             | Python     | Chaining, agents, retrieval      | Many LLM APIs    | Chatbots, RAG, workflows      |
 | LangGraph             | Python     | Multi-agent, graph orchestration | LangChain        | Reasoning, modular agents     |
-| Spring AI             | Java       | Enterprise, abstraction          | Spring ecosystem | Business apps, backend        |
+|             | Java       | Enterprise, abstraction          | Spring ecosystem | Business apps, backend        |
 | HF Transformers       | Python     | Model training, deployment       | Model hub, APIs  | NLP tasks, research, prod     |
 | Agentic AI (AutoGPT, CrewAI, N8N) | Python/JS | Autonomous agents, automation | Various          | Task automation, multi-agent  |
 
@@ -906,3 +906,50 @@ Relational databases require SQL queries, which are not naturally compatible wit
 - **Meta-Prompting:** Use one LLM to generate or optimize prompts for another model.
 - **Multi-Agent Collaboration:** Multiple agents work together, each with specialized roles or skills.
 - **Stateful Agents:** Persist agent state across sessions for long-running tasks.
+
+---
+
+## Agentic Patterns
+
+Spring AI or any other framework for that matter, inspired by Anthropic's research, implements five foundational agentic patterns for building effective LLM-based systems. These patterns balance simplicity, composability, and reliability, making them suitable for enterprise-grade AI applications.
+
+### 1. Chain Workflow
+- **Description:** Breaks down complex tasks into sequential, manageable steps. Each step's output becomes the input for the next.
+- **When to Use:** Tasks with clear sequential steps, where accuracy is prioritized over latency.
+- **Example:** Prompt chaining using a series of system prompts, each processed by the LLM in order.
+
+### 2. Parallelization Workflow
+- **Description:** Executes multiple LLM operations concurrently, aggregating outputs for efficiency.
+- **Variants:**
+  - **Sectioning:** Independent subtasks processed in parallel.
+  - **Voting:** Multiple instances of the same task for consensus.
+- **When to Use:** Large volumes of similar items, independent perspectives, or time-critical tasks.
+- **Example:** Parallel analysis of stakeholder groups, with each group processed simultaneously.
+
+### 3. Routing Workflow
+- **Description:** Uses LLMs to classify and route inputs to specialized prompts or handlers for targeted processing.
+- **When to Use:** Complex tasks with distinct input categories requiring specialized handling.
+- **Example:** Routing customer queries to billing, technical, or general support agents based on input analysis.
+
+### 4. Orchestrator-Workers Workflow
+- **Description:** Central LLM (orchestrator) decomposes tasks and coordinates specialized worker agents for subtasks. Results are aggregated for final output.
+- **When to Use:** Complex, adaptive tasks where subtasks can't be predicted upfront or require different approaches.
+- **Example:** Generating both technical and user-friendly documentation by orchestrating multiple worker agents.
+
+### 5. Evaluator-Optimizer Workflow
+- **Description:** Dual-LLM process where one model generates responses and another evaluates and provides feedback in an iterative loop, refining outputs until satisfactory.
+- **When to Use:** Tasks with clear evaluation criteria, requiring iterative refinement and measurable improvement.
+- **Example:** Creating a thread-safe Java class, with the evaluator agent critiquing and optimizing the generated solution.
+
+#### Implementation Advantages
+- **Model Portability:** Easy switching between LLM providers.
+- **Structured Output:** Type-safe handling of LLM responses.
+- **Consistent API:** Uniform interface across providers.
+- **Error Handling:** Built-in retries and validation.
+- **Flexible Prompt Management:** Supports advanced prompt engineering.
+
+#### Best Practices
+- Start simple, add complexity only as needed.
+- Design for reliability and validation at each step.
+- Balance latency and accuracy; use parallelization where appropriate.
+- Choose between fixed workflows and dynamic agents based on use case.
