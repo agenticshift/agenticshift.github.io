@@ -1,8 +1,8 @@
 +++
 date = '2025-05-10T12:44:47+10:00'
 draft = false
-title = 'LLM Frameworks detailed comparison'
-tags = ['LLM', 'Frameworks', 'Comparison']
+title = 'GenAI Tools comparison'
+tags = ['LLM', 'GenAI', 'Tools']
 +++
 
 ## LLM Frameworks Detailed Comparison
