@@ -7,21 +7,21 @@ tags = ['LLM', 'Frameworks', 'Comparison']
 
 ## LLM Frameworks Detailed Comparison
 
-| Framework      | Language | Type        | Agentic | Production Ready | Observability | Key Features                          | Pros                          | Cons                        |
-|---------------|----------|-------------|---------|------------------|---------------|---------------------------------------|-------------------------------|-----------------------------|
-| LangChain     | Python   | Application | Yes     | Excellent        | LangSmith, Langfuse | Chains, agents, integrations          | Modular, flexible workflows   | Token usage, rapid changes  |
-| LlamaIndex    | Python   | Application | Partial | Excellent        | Langfuse      | RAG, data connectors, chunking         | Data integration, token efficient | Smaller ecosystem           |
-| CrewAI        | Python   | Agentic     | Yes     | Good             | -             | Role-based agent teams, safety         | Coordination, safety          | Narrow scope, token usage    |
-| LangGraph     | Python   | Agentic     | Yes     | Excellent        | LangSmith      | Multi-agent orchestration, graphs      | Orchestration, control        | New, steep learning curve    |
-| AutoGen       | Python   | Agentic     | Yes     | Good             | -             | Multi-agent collab, code gen, automation| Code generation, automation   | Token overhead, focused scope|
-| Hugging Face  | Python   | Model Hub   | No      | Excellent        | -             | 25,000+ models, community, agnostic    | Large community, many models    | Resource intensive           |
-| OpenAI API    | Python   | Model API   | No      | Excellent        | -             | Hosted GPT models, simple API          | Fast setup, high quality        | Cost, customization limits   |
-| LangSmith     | Python   | Observability| Partial| Excellent        | Yes           | Tracing, debugging, evaluation         | Monitoring, evaluation         | LangChain focus, commercial  |
-| Langfuse      | Python   | Observability| Partial| Excellent        | Yes           | Prompt mgmt, versioning, observability | Prompt management, observability| New, paid features           |
-| Pinecone      | Python   | Vector DB   | No      | Excellent        | -             | Managed, scalable, production-ready    | Managed, scalable              | Cost, vendor lock-in         |
-| Milvus        | Python   | Vector DB   | No      | Excellent        | -             | Open-source, performant, self-hosted   | Open-source, performant        | -                           |
-| Spring AI     | Java     | Application | No      | Excellent        | Spring Boot Actuator, Zipkin, Splunk, DataDog | Spring ecosystem, portable, vector DB support | Enterprise-grade, security, Azure integration | Java only, smaller community, newer framework |
-| LangChain4j   | Java     | Application | No      | Good             | -             | Pure Java, JVM integration, lightweight | No Spring dependency, JVM polyglot | Smaller ecosystem, less features, less documentation |
+| Framework      | Language | Type        | Agentic | Production Ready | Observability                                 | MCP Support | Key Features                                  | Pros                          | Cons                        |
+|---------------|----------|-------------|---------|------------------|-----------------------------------------------|-------------|-----------------------------------------------|-------------------------------|-----------------------------|
+| LangChain     | Python   | Application | Yes     | Excellent        | LangSmith, Langfuse                           | Yes         | Chains, agents, integrations                  | Modular, flexible workflows   | Token usage, rapid changes  |
+| LlamaIndex    | Python   | Application | Partial | Excellent        | Langfuse, Arize Phoenix                       | Yes         | RAG, data connectors, chunking                | Data integration, token efficient | Smaller ecosystem           |
+| CrewAI        | Python   | Agentic     | Yes     | Medium           | -                                             | No          | Role-based agent teams, safety                | Coordination, safety          | Narrow scope, token usage    |
+| LangGraph     | Python   | Agentic     | Yes     | Excellent        | LangSmith                                     | Yes         | Multi-agent orchestration, graphs             | Orchestration, control        | New, steep learning curve    |
+| AutoGen2      | Python   | Agentic     | Yes     | Excellent        | -                                             | Planned     | Multi-agent collab, code gen, automation      | Code generation, automation   | Token overhead, focused scope|
+| Hugging Face  | Python   | Model Hub   | No      | Excellent        | -                                             | No          | 25,000+ models, community, agnostic           | Large community, many models    | Resource intensive           |
+| OpenAI API    | Python   | Model API   | No      | Excellent        | -                                             | No          | Hosted GPT models, simple API                 | Fast setup, high quality        | Cost, customization limits   |
+| LangSmith     | Python   | Observability| No      | Excellent        | Yes                                           | No          | Tracing, debugging, evaluation                | Monitoring, evaluation         | LangChain focus, commercial  |
+| Langfuse      | Python   | Observability| No      | Excellent        | Yes                                           | No          | Prompt mgmt, versioning, observability        | Prompt management, observability| New, paid features           |
+| Pinecone      | Python   | Vector DB   | No      | Excellent        | -                                             | No          | Managed, scalable, production-ready           | Managed, scalable              | Cost, vendor lock-in         |
+| Milvus        | Python   | Vector DB   | No      | Excellent        | -                                             | No          | Open-source, performant, self-hosted          | Open-source, performant        | -                           |
+| Spring AI     | Java     | Application | No      | Excellent        | Spring Boot Actuator, Zipkin, Splunk, DataDog | Yes         | Spring ecosystem, portable, vector DB support | Enterprise-grade, security, Azure integration | Java only, smaller community, newer framework |
+| LangChain4j   | Java     | Application | No      | Good             | -                                             | Planned     | Pure Java, JVM integration, lightweight       | No Spring dependency, JVM polyglot | Smaller ecosystem, less features, less documentation |
 
 ## Detailed Framework & Tool Descriptions
 
@@ -39,7 +39,7 @@ tags = ['LLM', 'Frameworks', 'Comparison']
 
 **LangGraph:** Multi-agent orchestration, graph workflows. Flexible, superior for multi-agent orchestration. Best for complex multi-agent workflows. Cons: Newer, steeper learning curve.
 
-**AutoGen:** Multi-agent collaboration, code generation, automation. Excellent for code generation, multi-agent collaboration. Best for automated programming and agentic workflows. Cons: Token overhead, focused on automation.
+**AutoGen2:** (Latest version, formerly AutoGen) Multi-agent collaboration, code generation, automation. Enhanced agent orchestration, improved performance, and more robust production features. Best for automated programming and agentic workflows. Cons: Token overhead, focused on automation, learning curve for new features.
 
 ### Model Repositories & APIs
 **Hugging Face Model Hub:** 25,000+ models, community-driven.
@@ -76,7 +76,7 @@ LangChain is an open-source framework for developing applications that use large
 - Highly flexible architecture supporting integration with APIs, databases, and external tools
 - Composable toolkit using LangChain Expression Language (LCEL) for complex workflows
 - Excellent for multi-step AI workflows
-- Strong community support (110k+ GitHub stars)
+- Strong community support 
 **Weaknesses:**
 - Can use 20-30% more tokens due to verbose prompting
 - Rapid evolution can lead to breaking changes and occasionally outdated documentation
@@ -206,7 +206,18 @@ Hugging Face Transformers is an open-source library providing access to over 25,
 ## IV. Deployment & Serving Tools
 - **TensorFlow Serving:** High-performance, flexible system for deploying TensorFlow models in production.
 - **TorchServe:** PyTorch's production serving solution.
-- **vLLM:** Supported framework for fine-tuning models with high-performance inference.
+- **vLLM:** Supported framework for high-throughput, low-latency inference engine for serving large language models.
+
+## Framework Categories
+
+- **Application Frameworks:** LangChain, LlamaIndex, Spring AI
+- **Training Frameworks:** PyTorch, TensorFlow, JAX
+- **Storage Infrastructure (Vector DBs):** Pinecone, Milvus, Weaviate, Qdrant, pgvector, Redis
+- **MLOps/Observability Tools:** LangSmith, Langfuse
+- **Inference/Serving Layer:** vLLM
+
+### vLLM Description (Corrected)
+**vLLM:** vLLM is a high-throughput, low-latency inference engine for serving large language models. It is not a fine-tuning or training framework. vLLM is designed for efficient model serving, supporting features like continuous batching, tensor parallelism, and optimized memory management for production-scale LLM inference.
 
 ## V. Comparison Matrix
 | Framework         | Language | Learning Curve | Production Ready | Research Focus | Token Efficiency | Community Size |
@@ -265,3 +276,12 @@ Vector databases are essential for storing and searching high-dimensional embedd
 **Redis:** Redis module for vector search. Fast and simple, suitable for multi-purpose caching and search, but lacks advanced vector DB features.
 
 The landscape continues evolving rapidly, with no single best solution for all use cases.
+
+## Note on OpenAI Agent
+As of November 2025, there is no widely recognized standalone framework called "OpenAI Agent". OpenAI provides agentic capabilities via its API and platform, but these are typically accessed through other frameworks (e.g., LangChain, AutoGen2) or custom implementations using OpenAI's API endpoints. If OpenAI releases a dedicated agent framework, refer to their official documentation for details.
+
+## Recent Framework Updates (2025)
+
+- **Spring AI 1.1 GA** (November 12, 2025): Enhanced stability, new integrations, and improved enterprise features for Java/Spring Boot AI applications. The update includes expanded support for vector databases, improved prompt caching, and tighter security and observability integrations.
+- **Spring LangGraph Studio v2** (May 2025): Advanced debugging capabilities and seamless integration with LangSmith for observability and workflow tracing. This release enables more robust multi-agent workflow development and monitoring within the Spring ecosystem.
+- **Model Context Protocol (MCP) Support):** MCP is now natively supported in Spring AI, LangChain, and LangGraph, enabling standardized context management and interoperability across LLM applications and agents. MCP support allows for easier integration of private data, context windows, and agent state across frameworks, improving reliability and developer experience.
