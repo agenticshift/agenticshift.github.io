@@ -1,6 +1,6 @@
-baseURL = 'https://gravionis.github.io/'
+baseURL = 'https://agenticshift.github.io/'
 languageCode = 'en-us'
-title = 'GRAVIONIS'
+title = 'AgenticShift'
 theme = 'gravionis'
 
 [menus]
